@@ -8,9 +8,12 @@ gem 'sqlite3'
 gem 'watir'
 gem 'nokogiri'
 
-# debugging
-gem 'pry'
-gem 'pry-byebug'
 
 # for easy requiring https://github.com/jarmo/require_all
 gem 'require_all'
+
+group :test do
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'rspec'
+end

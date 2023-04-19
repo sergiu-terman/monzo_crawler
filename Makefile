@@ -13,6 +13,19 @@ clean-logs:
 
 clean-storage: clean-db clean-logs
 
+test:
+	@docker rm -f crawler_test &> /dev/null || true
+	@docker run \
+		--name crawler_test \
+		--env WORKDIR=$(WORKDIR) \
+		--mount type=bind,source=$(PWD)/src,target=/opt/app/src \
+		--mount type=bind,source=$(PWD)/storage,target=/opt/app/storage \
+		--privileged \
+		-t \
+		crawler_env:latest \
+		/bin/sh -c 'cd $(WORKDIR)/src && bundle exec rspec'
+	@docker rm -f crawler_test &> /dev/null || true
+
 run:
 	@docker rm -f crawler || true
 	@docker run \
