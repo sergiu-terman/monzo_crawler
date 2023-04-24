@@ -1,15 +1,20 @@
 require 'sqlite3'
 require 'sequel'
-require 'pry'
 require 'nokogiri'
 require 'watir'
-require 'require_all'
+require 'zeitwerk'
 require 'pathname'
+require 'fileutils'
 
-dirs = Pathname.new("#{ENV['WORKDIR']}/src/lib/")
-  .children
-  .select { |d| d.directory? }
+require 'pry'
+require 'pry-byebug'
 
-dirs.each do |d|
-  autoload_all d
+require_relative 'model/init'
+
+def autoload_libs
+  loader = Zeitwerk::Loader.new
+  loader.push_dir("#{ENV['WORKDIR']}/src/lib/")
+  loader.setup
 end
+
+autoload_libs

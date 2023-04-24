@@ -6,7 +6,8 @@ EXECUTE_FROM := ${EXECUTE_FROM}
 EXECUTE_TILL := ${EXECUTE_TILL}
 
 clean-db:
-	@rm -rf ./storage/the.db
+	@rm -rf ./storage/prod.db
+	@rm -rf ./storage/test.db
 
 clean-logs:
 	@rm -rf ./storage/*.log
@@ -18,6 +19,7 @@ test:
 	@docker run \
 		--name crawler_test \
 		--env WORKDIR=$(WORKDIR) \
+		--env RACK_ENV='test' \
 		--mount type=bind,source=$(PWD)/src,target=/opt/app/src \
 		--mount type=bind,source=$(PWD)/storage,target=/opt/app/storage \
 		--privileged \

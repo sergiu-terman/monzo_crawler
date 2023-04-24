@@ -9,11 +9,10 @@ gem 'watir'
 gem 'nokogiri'
 
 
-# for easy requiring https://github.com/jarmo/require_all
-gem 'require_all'
+# so I don't have to 'require'
+gem 'zeitwerk'
 
-group :test do
-  gem 'pry'
-  gem 'pry-byebug'
-  gem 'rspec'
-end
+# test & debug
+gem 'pry'
+gem 'pry-byebug'
+gem 'rspec'

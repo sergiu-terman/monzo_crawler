@@ -13,7 +13,17 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+require './lib/env'
+
 RSpec.configure do |config|
+  config.before(:all) do
+    Model::PageToPage.dataset.delete
+    Model::Page.dataset.delete
+    Model::Domain.dataset.delete
+  end
+
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
