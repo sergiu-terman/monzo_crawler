@@ -5,6 +5,7 @@ require 'watir'
 require 'zeitwerk'
 require 'pathname'
 require 'fileutils'
+require 'thread/pool'
 
 require 'pry'
 require 'pry-byebug'

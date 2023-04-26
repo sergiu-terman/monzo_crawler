@@ -16,3 +16,6 @@ gem 'zeitwerk'
 gem 'pry'
 gem 'pry-byebug'
 gem 'rspec'
+
+# extra
+gem 'thread'

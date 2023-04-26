@@ -36,6 +36,7 @@ GEM
       websocket (~> 1.0)
     sequel (5.67.0)
     sqlite3 (1.6.2-x86_64-linux)
+    thread (0.2.2)
     watir (7.2.2)
       regexp_parser (>= 1.2, < 3)
       selenium-webdriver (~> 4.2)
@@ -52,6 +53,7 @@ DEPENDENCIES
   rspec
   sequel
   sqlite3
+  thread
   watir
   zeitwerk
 

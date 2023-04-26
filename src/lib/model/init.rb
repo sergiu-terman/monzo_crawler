@@ -35,7 +35,7 @@ def create_tables!
     FalseClass :is_downloaded
     DateTime :downloaded_at
     String :downloaded_path
-    Integer :download_attempt
+    FalseClass :download_failed
 
     FalseClass :is_parsed
     DateTime :parsed_at
