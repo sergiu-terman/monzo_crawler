@@ -32,6 +32,7 @@ describe "Task::PageParser" do
     expect(@publisher).to receive(:publish).with(any_args).exactly(3).times
 
     Task::PageParser.new(@page, @publisher, @link_extractor, @content_reader).run
+    @page.reload
 
     other_pages = @page.linked_to
     other_pages_urls = other_pages.map{ |p| p.url }
@@ -41,5 +42,7 @@ describe "Task::PageParser" do
       "http://www.monzo.com/pots",
       "http://www.monzo.com/pots?my=query",
     ]))
+    expect(@page.is_parsed).to be(true)
+    expect(@page.parsed_at).not_to be(nil)
   end
 end

@@ -10,6 +10,7 @@ require 'securerandom'
 require 'rubygems/package'
 require 'zlib'
 require 'stringio'
+require 'logger'
 
 require 'pry'
 require 'pry-byebug'

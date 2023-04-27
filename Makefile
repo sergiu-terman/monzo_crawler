@@ -29,7 +29,7 @@ test:
 	@docker rm -f crawler_test &> /dev/null || true
 
 run:
-	@docker rm -f crawler || true
+	@docker rm -f crawler &> /dev/null || true
 	@docker run \
 		--name crawler \
 		--env WORKDIR=$(WORKDIR) \
@@ -37,8 +37,8 @@ run:
 		--mount type=bind,source=$(PWD)/storage,target=/opt/app/storage \
 		--privileged \
 		crawler_env:latest \
-		/bin/sh -c 'cd $(WORKDIR)/src && make run'
-	@docker rm -f crawler || true
+		/bin/sh -c 'cd $(WORKDIR)/src && make crawl'
+	@docker rm -f crawler 2> /dev/null|| true
 
 exec:
 	@docker run -ti \

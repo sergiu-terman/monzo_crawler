@@ -20,6 +20,12 @@ module Model
       save
     end
 
+    def record_parsed!
+      self.is_parsed = true
+      self.parsed_at = Time.now
+      save
+    end
+
     def domain_name
       domain.name
     end

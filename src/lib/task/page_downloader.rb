@@ -2,7 +2,7 @@ module Task
   class PageDownloader
 
     def initialize(page, publisher,
-                   web_getter=Aux::HTTPGetter.new,
+                   web_getter=Aux::HttpGetter.new,
                    content_writer=Aux::FileManager.new)
       @page = page
       @publisher = publisher

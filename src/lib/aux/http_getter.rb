@@ -1,5 +1,5 @@
 module Aux
-  class HTTPGetter
+  class HttpGetter
     def get(url)
       HTTParty.get(url)
     end

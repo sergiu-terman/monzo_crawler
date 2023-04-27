@@ -14,6 +14,7 @@ module Task
       content = @content_reader.read(@page.download_name)
       links = @link_extractor.extract(content)
       process_links(links)
+      @page.record_parsed!
     end
 
     def process_links(links)

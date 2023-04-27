@@ -1,7 +1,7 @@
 module Task
   class Executor
 
-    def initialize(role, initial_tasks=[], pool_size=10)
+    def initialize(role, initial_tasks=[], pool_size=30)
       @role = role
       @pool = Thread.pool(pool_size)
       @q = Queue.new(initial_tasks)
