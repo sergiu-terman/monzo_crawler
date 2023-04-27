@@ -22,7 +22,7 @@ describe "model setup" do
     )
   end
 
-  it "has domains poting to pages" do
+  it "has domains poiting to pages" do
     expect(@domain.pages.count).to eq(2)
   end
 

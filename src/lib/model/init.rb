@@ -32,12 +32,12 @@ def create_tables!
 
     String :url, unique: true
 
-    FalseClass :is_downloaded
+    FalseClass :is_downloaded, default: false
     DateTime :downloaded_at
-    String :downloaded_path
-    FalseClass :download_failed
+    String :download_name
+    FalseClass :download_failed, default: false
 
-    FalseClass :is_parsed
+    FalseClass :is_parsed, default: false
     DateTime :parsed_at
 
     DateTime :created_at

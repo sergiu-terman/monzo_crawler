@@ -18,9 +18,7 @@ require './lib/env'
 
 RSpec.configure do |config|
   config.before(:all) do
-    Model::PageToPage.dataset.delete
-    Model::Page.dataset.delete
-    Model::Domain.dataset.delete
+    Aux::DbUtil.clean!
   end
 
 

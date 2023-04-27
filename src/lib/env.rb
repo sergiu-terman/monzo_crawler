@@ -6,6 +6,8 @@ require 'zeitwerk'
 require 'pathname'
 require 'fileutils'
 require 'thread/pool'
+require 'httparty'
+require 'securerandom'
 
 require 'pry'
 require 'pry-byebug'

@@ -19,3 +19,4 @@ gem 'rspec'
 
 # extra
 gem 'thread'
+gem 'httparty'

@@ -34,6 +34,7 @@ module Task
             Aux::Log.info("No jobs found for #{@role}, waiting for a while")
             next
           end
+
           task = @q.pop
 
           # a sentinel value to stop processing the queue
