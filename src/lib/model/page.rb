@@ -24,6 +24,10 @@ module Model
       domain.name
     end
 
+    def domain_filter
+      domain.domain_filter
+    end
+
     private
 
     def mark_as_downloaded
