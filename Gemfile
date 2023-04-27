@@ -5,7 +5,7 @@ gem 'sequel'
 gem 'sqlite3'
 
 # get/parse http
-gem 'watir'
+gem 'httparty'
 gem 'nokogiri'
 
 
@@ -19,4 +19,3 @@ gem 'rspec'
 
 # extra
 gem 'thread'
-gem 'httparty'

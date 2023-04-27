@@ -31,15 +31,7 @@ RUN apt-get install -y jq \
     libappindicator1 \
     libxi6 \
     xdg-utils \
-    default-jdk \
-    chromium
-
-# install chromedriver
-RUN curl -s -L -o driver.zip "https://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip" && \
-    unzip driver.zip && \
-    rm -rf driver.zip && \
-    chmod +x chromedriver && \
-    mv chromedriver /usr/local/bin/
+    default-jdk
 
 RUN addgroup --gid $GROUP_ID user
 RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
