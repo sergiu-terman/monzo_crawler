@@ -7,12 +7,12 @@ module Model
     end
 
     def pages_to_download
-      pages_dataset.where(is_downloaded: false)
+      pages_dataset.where(is_downloaded: false).all
     end
 
     def pages_to_parse
       pages_dataset.where(is_downloaded: true)
-        .where(is_parsed: false)
+        .where(is_parsed: false).all
     end
   end
 end

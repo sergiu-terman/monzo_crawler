@@ -14,13 +14,14 @@ describe "Task::PageParser" do
     )
 
     @link_extractor = double("link_extractor", extract: [
-      "https://monzo.com/",                 # bad (already present)
-      "https://blog.monzo.com/",            # bad (domain missmatch)
-      "https://monzo.com/help#main",        # ok
-      "https://monzo.com/help",             # bad (help page already recorded)
-      "http://www.monzo.com/pots",          # ok
-      "http://www.monzo.com/pots?my=query", # ok
-      "http://www.google.com",              # bad
+      "https://monzo.com/",                         # bad (already present)
+      "https://blog.monzo.com/",                    # bad (domain missmatch)
+      "https://monzo.com/help#main",                # ok
+      "https://monzo.com/help",                     # bad (help page already recorded)
+      "http://www.monzo.com/pots",                  # ok
+      "http://www.monzo.com/pots?my=query",         # ok
+      "http://www.google.com",                      # bad
+      "https://example.com/url=https://monzo.com",  # bad
     ])
     @publisher = double("publisher")
 
@@ -31,7 +32,7 @@ describe "Task::PageParser" do
   it "extracts, filtres, saves and publishes the new links" do
     expect(@publisher).to receive(:publish).with(any_args).exactly(3).times
 
-    Task::PageParser.new(@page, @publisher, @link_extractor, @content_reader).run
+    Task::PageParser.new(@page, @publisher, @link_extractor, @content_reader).run_internal
     @page.reload
 
     other_pages = @page.linked_to

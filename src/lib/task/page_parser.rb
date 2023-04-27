@@ -11,10 +11,24 @@ module Task
     end
 
     def run
+      begin
+        run_internal
+      rescue Exception => e
+        Aux::Log.error(e.message)
+      end
+    end
+
+    def run_internal
+      Aux::Log.info("Started to parse #{@page.url}")
+      start = Time.now
+
       content = @content_reader.read(@page.download_name)
       links = @link_extractor.extract(content)
       process_links(links)
       @page.record_parsed!
+
+      elapsed = (Time.now - start).truncate(3)
+      Aux::Log.info("Finished to parse #{@page.url} (#{elapsed}s)")
     end
 
     def process_links(links)
@@ -25,7 +39,7 @@ module Task
 
     def sanitize_links(links)
       domain_filter = @page.domain_filter
-      regex = Regexp.new("/(http:\/\/|https:\/\/)?(www\.)?#{domain_filter}.*/")
+      regex = Regexp.new("^((http:\/\/|https:\/\/)?(www\.)?#{domain_filter}).*")
 
       # same urls that have different strings after '#' should
       # treated as the same url
@@ -41,7 +55,6 @@ module Task
         new_p = Model::Page.create(url: link, domain: @page.domain)
         @publisher.publish(new_p)
         Model::PageToPage.create(source: @page, destination: new_p)
-        Aux::Log.info("Recording a link between '#{@page.url}' and '#{link}'")
       rescue Sequel::UniqueConstraintViolation
         # it's okay
       end

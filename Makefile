@@ -12,7 +12,15 @@ clean-db:
 clean-logs:
 	@rm -rf ./storage/*.log
 
-clean-storage: clean-db clean-logs
+clean-download:
+	@rm -rf ./storage/web
+	@mkdir ./storage/web
+	@touch ./storage/web/.gitkeep
+
+clean-docker:
+	@docker rm $(shell docker ps -a --filter ancestor=crawler_env --format="{{.ID}}") &> /dev/null || true
+
+clean-all: clean-db clean-logs clean-download clean-docker
 
 test:
 	@docker rm -f crawler_test &> /dev/null || true

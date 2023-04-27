@@ -28,7 +28,7 @@ describe "Task::PageDownloader" do
     end
 
     it "records the failure to the model" do
-      Task::PageDownloader.new(@page, @publisher, @web_getter, @content_writer).run
+      Task::PageDownloader.new(@page, @publisher, @web_getter, @content_writer).run_internal
 
       p = Model::Page.all.first
 
@@ -42,7 +42,7 @@ describe "Task::PageDownloader" do
       expect(@publisher).not_to receive(:publish)
       expect(@content_writer).not_to receive(:write)
 
-      Task::PageDownloader.new(@page, @publisher, @web_getter, @content_writer).run
+      Task::PageDownloader.new(@page, @publisher, @web_getter, @content_writer).run_internal
     end
   end
 
@@ -56,7 +56,7 @@ describe "Task::PageDownloader" do
       expect(@publisher).to receive(:publish).with(@page)
       expect(@content_writer).to receive(:write).with(any_args, "<html/>")
 
-      Task::PageDownloader.new(@page, @publisher, @web_getter, @content_writer).run
+      Task::PageDownloader.new(@page, @publisher, @web_getter, @content_writer).run_internal
 
       p = Model::Page.all.first
 
