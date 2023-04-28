@@ -6,6 +6,12 @@ module Runner
         Task::Orchestrator.new(monzo_domain).run
       end
 
+      def generate_graph
+        Task::Graphgen.new(monzo_domain).run
+      end
+
+
+
       # The crawler could deal with any domain and doesn't have any
       # code custom to the Monzo website. The domain should be an input argument.
       # For the purpose of the assignment resotring to the only monzo hardcoded bit here.

@@ -19,3 +19,6 @@ gem 'rspec'
 
 # extra
 gem 'thread'
+
+# for grahp rendering
+gem 'gexf'

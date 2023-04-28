@@ -48,6 +48,18 @@ run:
 		/bin/sh -c 'cd $(WORKDIR)/src && make crawl'
 	@docker rm -f crawler 2> /dev/null|| true
 
+gen-graph:
+	@docker rm -f crawler &> /dev/null || true
+	@docker run \
+		--name crawler \
+		--env WORKDIR=$(WORKDIR) \
+		--mount type=bind,source=$(PWD)/src,target=/opt/app/src \
+		--mount type=bind,source=$(PWD)/storage,target=/opt/app/storage \
+		--privileged \
+		crawler_env:latest \
+		/bin/sh -c 'cd $(WORKDIR)/src && make gen-graph'
+	@docker rm -f crawler 2> /dev/null|| true
+
 exec:
 	@docker run -ti \
 		--env WORKDIR=$(WORKDIR) \
@@ -56,6 +68,15 @@ exec:
 		--privileged \
 		crawler_env:latest \
 		/bin/sh -c 'cd $(WORKDIR)/src; bash'
+
+console:
+	@docker run -ti \
+		--env WORKDIR=$(WORKDIR) \
+		--mount type=bind,source=$(PWD)/src,target=/opt/app/src \
+		--mount type=bind,source=$(PWD)/storage,target=/opt/app/storage \
+		--privileged \
+		crawler_env:latest \
+		/bin/sh -c 'cd $(WORKDIR)/src; make console'
 
 build-docker:
 	@docker build \

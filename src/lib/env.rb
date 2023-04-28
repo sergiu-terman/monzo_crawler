@@ -11,6 +11,7 @@ require 'rubygems/package'
 require 'zlib'
 require 'stringio'
 require 'logger'
+require 'gexf'
 
 require 'pry'
 require 'pry-byebug'

@@ -1,3 +1,4 @@
 storage/prod.db
 storage/test.db
 storage/web/*
+storage/graph.gexf
