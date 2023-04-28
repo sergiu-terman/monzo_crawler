@@ -3,11 +3,11 @@ module Runner
     class << self
       def run
         Aux::Log.info("Starting the crawler program")
-        Task::Orchestrator.new(monzo_domain).run
+        Task::Orchestrator.new(hard_coded_domain).run
       end
 
       def generate_graph
-        Task::Graphgen.new(monzo_domain).run
+        Task::Graphgen.new(hard_coded_domain).run
       end
 
 
@@ -15,7 +15,7 @@ module Runner
       # The crawler could deal with any domain and doesn't have any
       # code custom to the Monzo website. The domain should be an input argument.
       # For the purpose of the assignment resotring to the only monzo hardcoded bit here.
-      def monzo_domain
+      def hard_coded_domain
         if Model::Domain.count == 0
           return Model::Domain.create(
             name: "monzo",
